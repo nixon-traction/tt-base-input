@@ -30,3 +30,8 @@
     transform: rotate(360deg);
   }
 }
+
+
+div[valid="true"] {
+  border: 5px solid green;
+}
