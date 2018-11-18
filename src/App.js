@@ -4,7 +4,7 @@
 
   Requirement: Testable ✓
   Requirement: Enable/disable ✓
-  Requirement: Permissions (show, hide, disabled) ✓
+  Requirement: Permissions (show, hide, disabled) ✓ 
   Requirement: input validation ✓
   Requirement: Postable (as is, transformations) forms submit ✓
   Requirement: Confirmation (are you sure you want to delete) 
@@ -17,7 +17,7 @@
   Requirement: no internet 
   Requirement: extensible (hooks)
   Requirement: cross browser
-
+  Requirement: PropTypes Required
 
 */
 
@@ -27,6 +27,7 @@ import './App.css';
 import InputComponent from './lib/InputComponent';
 import { TranslatedMessage, TranslatedTime, TranslatedDate } from './lib/TranslatedComponent';
 import PropTypes from 'prop-types';
+import ShortcutKeys from './lib/ShortcutKeys';
 
 class App extends Component {
 
@@ -77,22 +78,35 @@ class App extends Component {
     this.setState({ score1 });
   }
 
+  callHotkeyTest() {
+    alert('testHotkey called!')
+  }
+
   render() {
 
     const numRegex = /^[0-9]{4,20}$/ig;
 
     const {currentTime} = this.props;
 
+    const keyMap = {
+      'testHotkey': 'command+k',
+    }
+
+    const handlers = {
+      'testHotkey': (event) => this.callHotkeyTest()
+    };
+
     return (
       <div className="App">
         <header className="App-header">
-
+        <ShortcutKeys keyMap={keyMap} handlers={handlers}>
         {/* <Hoc text={'hello'}/>
         <InputComponent validationRegex={/c/ig} model={this.state.data} /> */}
         
         <div className='box'>
           <b><TranslatedMessage id="app.example1" defaultMessage="Example 1" description="example 1 title"/> </b>
           <br/>
+          
           <button onClick={()=> this.updateScoreOwner()}>
             <TranslatedMessage id="app.button1" defaultMessage="Update Score owner" description="button label 1" />
           </button>
@@ -127,9 +141,20 @@ class App extends Component {
           <TranslatedTime value={currentTime} />
         </div>
 
+        <div className='box'>
+          <b>Example 4</b>
+          <br/>
+          
+          <br />
+
+         
+            <button onClick={()=>this.callHotkeyTest()}>Keyboard Shortcut (command+k)</button>
+          
+        </div>
+
         
 
-       
+        </ShortcutKeys>
         </header>
         <br/>
         
