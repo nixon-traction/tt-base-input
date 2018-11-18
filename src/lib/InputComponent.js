@@ -1,6 +1,8 @@
 import BaseComponent from './BaseComponent';
 import React from 'react';
 import Stringify from './Stringify';
+import {injectIntl} from 'react-intl'; 
+
 
 class InputComponent extends BaseComponent {
 
@@ -50,17 +52,41 @@ class InputComponent extends BaseComponent {
   }
 
   IsValid() {
-    return this.getValidationRegex().test(this.state.val);
+    return this.getValidationRegex().test(this.state.modelValue);
   }
 
   render() {
+
+    const translatedText = 'Input'; // get this from react intl lang
+
+    const { intl } = this.props;
     return (
       <div valid={Stringify(this.IsValid()) || 'false'}>
-        <input value={this.getRenderValue()} onChange={(e)=>this.setState({ modelValue : e.target.value})} onFocus={(e) => this.setFocus(e)} onBlur={(e) => this.unFocus()} />
+        <input 
+          aria-label={translatedText}
+          aria-required="true"
+          value={this.getRenderValue()} 
+          onChange={(e)=>this.setState({ modelValue : e.target.value})} 
+          onFocus={(e) => this.setFocus(e)} 
+          onBlur={(e) => this.unFocus()} 
+          placeholder={intl.formatMessage({ id: this.props.translationId, defaultMessage: this.props.defaultPlaceholder || ''})}
+        />
       </div>
     );
   }
 }
 
-export default InputComponent;
+/* other ARIA attr */
+/* 
+
+  aria-haspopup="true"
+  aria-expanded={this.state.isOpen}
+  aria-*
+
+
+  these attributes should be hyphen-cased 
+  
+*/
+
+export default injectIntl(InputComponent);
   

@@ -14,7 +14,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
@@ -34,4 +33,13 @@
 
 div[valid="true"] {
   border: 5px solid green;
+}
+
+.box {
+  border : 1px solid white;
+  border-radius : 3px;
+  width : 300px;
+  margin : 0 auto;
+  display: block;
+  padding : 15px;
 }

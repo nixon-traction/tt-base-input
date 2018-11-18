@@ -126,6 +126,10 @@ class BaseComponent extends Component{
         }
     }
 
+    getRegex() {
+        return /a/;
+    }
+
     validation() {
 
     }
