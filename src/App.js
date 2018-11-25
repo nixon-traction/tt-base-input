@@ -111,7 +111,7 @@ class App extends Component {
             <TranslatedMessage id="app.button1" defaultMessage="Update Score owner" description="button label 1" />
           </button>
           <br/>
-          <small>Updates score1 and still updates score2 by using reference</small>
+          <small>Updates score1 and still updates score2 by using reference!</small>
           <br/>
           <input type="text" value={this.state.score1.owner.name} onChange={(e)=> this.changeToAnotherName(e)}/>
           <br/>
