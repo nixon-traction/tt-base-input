@@ -18,7 +18,7 @@ const messages = {
 }
 
 // const language = navigator.language.split(/[-_]/)[0]; // language without region code
-const language = 'de';
+const language = 'en';
 
 ReactDOM.render(<IntlProvider locale={language} messages={messages[language]} timeZone="Asia/Jakarta"><App /></IntlProvider>, document.getElementById('root'));
 
